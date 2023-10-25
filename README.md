@@ -1,5 +1,5 @@
 # Cloud immersion hands on
-This project leverages a cutting-edge multicloud strategy, harnessing the power of both GCP and AWS, to deliver a state-of-the-art Infrastructure as Code (IAC) solution through the seamless integration of Terraform. It's a fictional scenario of a luxury hotel that needs to migrate its application and infrastructure to the cloud. This project is the implementation of the Cloud Immersion bootcamp, hosted by <a href="https://thecloudbootcamp.com/" target="_blanck">The Cloud Bootcamp</a> team.
+This project leverages a cutting-edge multicloud strategy, harnessing the power of both GCP and AWS, to deliver a state-of-the-art Infrastructure as Code (IAC) solution through the seamless integration of Terraform. It's a fictional scenario of a luxury hotel that needs to migrate its application and infrastructure to the cloud. It's the implementation of the Cloud Immersion bootcamp, hosted by <a href="https://thecloudbootcamp.com/" target="_blank">The Cloud Bootcamp</a> team.
 
 ## Required
 - Both AWS and GCP accounts
