@@ -1,4 +1,4 @@
-# EN
+# EN-US
 
 # Cloud immersion hands on
 This project leverages a cutting-edge multicloud strategy, harnessing the power of both GCP and AWS, to deliver a state-of-the-art Infrastructure as Code (IAC) solution through the seamless integration of Terraform. It's a fictional scenario of a luxury hotel that needs to migrate its application and infrastructure to the cloud. It's the implementation of the Cloud Immersion bootcamp, hosted by <a href="https://thecloudbootcamp.com/" target="_blank">The Cloud Bootcamp</a> team.
@@ -6,6 +6,7 @@ This project leverages a cutting-edge multicloud strategy, harnessing the power 
 ## Required
 - Both AWS and GCP accounts
 - Create a terraform user on AWS IAM service, with "AmazonS3FullAccess" policy
+- Create and download the Access Key CSV file for this user and place it in the same folder as this project
 
 ## Stack
 - IAC: Terraform
@@ -69,6 +70,7 @@ Este projeto aproveita uma estratégia multicloud de ponta, aproveitando o poder
 ## Requisitos
 - Contas na AWS e GCP
 - Crie um usuário Terraform no serviço AWS IAM com a política "AmazonS3FullAccess"
+- Crie e faça o download do arquivo CSV da Chave de Acesso para este usuário e coloque-o na mesma pasta deste projeto
 
 ## Pilha
 - IAC: Terraform
