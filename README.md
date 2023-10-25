@@ -1,7 +1,7 @@
 # EN-US
 
 # Cloud immersion hands on
-This project leverages a cutting-edge multicloud strategy, harnessing the power of both GCP and AWS, to deliver a state-of-the-art Infrastructure as Code (IAC) solution through the seamless integration of Terraform. It's a fictional scenario of a luxury hotel that needs to migrate its application and infrastructure to the cloud. It's the implementation of the Cloud Immersion bootcamp, hosted by <a href="https://thecloudbootcamp.com/" target="_blank">The Cloud Bootcamp</a> team.
+This project leverages a cutting-edge multicloud strategy, harnessing the power of both GCP and AWS, to deliver a state-of-the-art Infrastructure as Code (IAC) solution through the seamless integration of Terraform. It's a real world scenario of a luxury hotel that needs to migrate its application and infrastructure to the cloud. It's the implementation of the Cloud Immersion bootcamp, hosted by <a href="https://thecloudbootcamp.com/" target="_blank">The Cloud Bootcamp</a> team.
 
 ## Required
 - Both AWS and GCP accounts
@@ -65,7 +65,7 @@ Run the following commands on Google Cloud PowerShell:
 # PT-BR
 
 # Imersão em Nuvem Prática
-Este projeto aproveita uma estratégia multicloud de ponta, aproveitando o poder tanto do GCP quanto da AWS, para fornecer uma solução de Infraestrutura como Código (IAC) de última geração por meio da integração perfeita do Terraform. É um cenário fictício de um hotel de luxo que precisa migrar sua aplicação e infraestrutura para a nuvem. É a implementação do bootcamp Cloud Immersion, hospedado pela equipe [The Cloud Bootcamp](https://thecloudbootcamp.com/).
+Este projeto aproveita uma estratégia multicloud de ponta, aproveitando o poder tanto do GCP quanto da AWS, para fornecer uma solução de Infraestrutura como Código (IAC) de última geração por meio da integração perfeita do Terraform. Trata-se de um cenário do mundo real de um hotel de luxo que precisa migrar sua aplicação e infraestrutura para a nuvem. É a implementação do bootcamp Cloud Immersion, hospedado pela equipe [The Cloud Bootcamp](https://thecloudbootcamp.com/).
 
 ## Requisitos
 - Contas na AWS e GCP
