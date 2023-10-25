@@ -44,7 +44,7 @@ Run the following commands on Google Cloud PowerShell:
 4) terraform apply
 5) Type "yes"
 
-### Step 2: preparing the SQL network
+## Step 2: preparing the SQL network
 - Select your Cloud SQL instance
 - Select "Connections"
 - Select the Networking tab and in Instance IP assignment and enable Private IP
