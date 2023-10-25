@@ -72,7 +72,7 @@ Este projeto aproveita uma estratégia multicloud de ponta, aproveitando o poder
 - Crie um usuário Terraform no serviço AWS IAM com a política "AmazonS3FullAccess"
 - Crie e faça o download do arquivo CSV da Chave de Acesso para este usuário e coloque-o na mesma pasta deste projeto
 
-## Pilha
+## Tencologias
 - IAC: Terraform
 - Armazenamento: AWS S3
 - Banco de Dados: Google Cloud SQL
