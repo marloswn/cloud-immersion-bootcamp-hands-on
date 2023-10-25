@@ -12,7 +12,7 @@ This project leverages a cutting-edge multicloud strategy, harnessing the power 
 - Application: hosted and processed on Google Kubernets Engine (GKE) using Google Container Registry (GCR)
 - Change the bucket name in tcb_aws_storage.tf file to your desired bucket on S3
 
-### Step 1: providing the infrastructure
+## Step 1: providing the infrastructure
 
 Run the following commands on Google Cloud PowerShell:
 
