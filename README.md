@@ -1,19 +1,21 @@
 # EN-US
 
 # Cloud immersion hands on
-This project leverages a cutting-edge multicloud strategy, harnessing the power of both GCP and AWS, to deliver a state-of-the-art Infrastructure as Code (IAC) solution through the seamless integration of Terraform. It's a real world scenario of a luxury hotel that needs to migrate its application and infrastructure to the cloud. It's the implementation of the Cloud Immersion bootcamp, hosted by <a href="https://thecloudbootcamp.com/" target="_blank">The Cloud Bootcamp</a> team.
+This project leverages a cutting-edge multicloud strategy, harnessing the power of both GCP and AWS, to deliver a state-of-the-art Infrastructure as Code (IAC) solution through the seamless integration of Terraform. This is a real-world scenario of a luxury hotel that needs to migrate its COVID guest testing application and infrastructure to the cloud. It's the implementation of the Cloud Immersion bootcamp, hosted by <a href="https://thecloudbootcamp.com/" target="_blank">The Cloud Bootcamp</a> team.
 
-## Required
-- Both AWS and GCP accounts
-- Create a terraform user on AWS IAM service, with "AmazonS3FullAccess" policy
-- Create and download the Access Key CSV file for this user and place it in the same folder as this project
+## Requirements
+- AWS and GCP Accounts
+- Create a user "terraform-pt-1" in the AWS IAM service, with programmatic access (CLI) and the "AmazonS3FullAccess" policy, create an access key for it, download, rename the CSV to "accessKeys.csv," and place it in the "mission1" directory.
+- Create a user "luxxy-covid-testing-system-pt-app1" in the AWS IAM service, with programmatic access (CLI) and the "AmazonS3FullAccess" policy, create an access key for it, download, rename the CSV to "luxxy-covid-testing-system-pt-app1.csv," and place it in the "mission2" directory.
+- Change the bucket name in the tcb_aws_storage.tf file (mission1 folder) to your desired S3 bucket.
 
 ## Stack
 - IAC: Terraform
 - Storage: AWS S3
 - Database: Google Cloud SQL
-- Application: hosted and processed on Google Kubernets Engine (GKE) using Google Container Registry (GCR)
-- Change the bucket name in tcb_aws_storage.tf file to your desired bucket on S3
+- Application: hosted and processed on Google Kubernetes Engine (GKE) using Google Container Registry (GCR)
+- Google Cloud Shell
+- Google Cloud Editor
 
 ## Step 1: providing the infrastructure
 
@@ -62,22 +64,59 @@ Run the following commands on Google Cloud PowerShell:
   - Network: 0.0.0.0/0
   - Click Done
  
+## Step 3: Converting the application to run in a multicloud environment
+- Create a database user and password in the Google Cloud SQL service.
+- Connect to Google Cloud Shell and execute the following commands:
+  - cd ~
+  - mkdir mission2_en
+  - cd mission2_en
+  - wget https://tcb-public-events.s3.amazonaws.com/icp/mission2.zip
+  - unzip mission2.zip
+- Connect to the SQL instance with the command: mysql --host=<your_public_ip_cloudsql> --port=3306 -u app -p
+- Create the "records" table with the following commands:
+  - use dbcovidtesting;
+  - source ~/mission2_en/mission2/en/db/create_table.sql
+  - show tables; (to validate the table creation)
+  - exit;
+- Enable Google Cloud Build with the command: gcloud services enable cloudbuild.googleapis.com
+  
+## Step 4: Build the previously configured Docker image and edit the Kubernetes YAML file
+- Execute:
+  - cd ~/mission2_en/mission2/en/app
+  - gcloud builds submit --tag gcr.io/<PROJECT_ID>/luxxy-covid-testing-system-app-en
+- Modify the luxxy-covid-testing-system.yaml file in the following sections:
+  - image (insert your project_id)
+  - AWS_BUCKET (insert the name of your already created bucket)
+  - S3_ACCESS_KEY (insert according to the luxxy-covid-testing-system-en-app1.csv file)
+  - S3_SECRET_ACCESS_KEY (insert according to the luxxy-covid-testing-system-en-app1.csv file)
+  - DB_HOST_NAME (insert the private IP of your database instance)
+    
+## Step 5: Deploy the application on the Kubernetes cluster
+- Access GKE through the console, select the "Connect > Run in Cloud Shell" option, and execute the command to authenticate Kubernetes.
+- Perform the deployment with the following command:
+  - cd ~/mission2_en/mission2/en/kubernetes
+  - kubectl apply -f luxxy-covid-testing-system.yaml
+- In the GKE panel, go to "Services and Ingress" and find the IP of the generated endpoint.
+- The application is up and running!
+ 
 # PT-BR
 
 # Imersão em Nuvem Prática
-Este projeto aproveita uma estratégia multicloud de ponta, aproveitando o poder tanto do GCP quanto da AWS, para fornecer uma solução de Infraestrutura como Código (IAC) de última geração por meio da integração perfeita do Terraform. Trata-se de um cenário do mundo real de um hotel de luxo que precisa migrar sua aplicação e infraestrutura para a nuvem. É a implementação do bootcamp Cloud Immersion, hospedado pela equipe [The Cloud Bootcamp](https://thecloudbootcamp.com/).
+Este projeto aproveita uma estratégia multicloud de ponta, aproveitando o poder tanto do GCP quanto da AWS, para fornecer uma solução de Infraestrutura como Código (IAC) de última geração por meio da integração perfeita do Terraform. Trata-se de um cenário do mundo real de um hotel de luxo que precisa migrar sua aplicação de testes de Covid dos hóspedes e sua infraestrutura para a nuvem. É a implementação do bootcamp Cloud Immersion, hospedado pela equipe [The Cloud Bootcamp](https://thecloudbootcamp.com/).
 
 ## Requisitos
 - Contas na AWS e GCP
-- Crie um usuário Terraform no serviço AWS IAM com a política "AmazonS3FullAccess"
-- Crie e faça o download do arquivo CSV da Chave de Acesso para este usuário e coloque-o na mesma pasta deste projeto
+- Criar um usuário "terraform-pt-1" no serviço AWS IAM, com acesso programático (cli) e com a política "AmazonS3FullAccess", criar uma chave de acesso ao mesmo, baixando, renomeando o CSV para "accessKeys.csv" e colocando-o dentro do diretório "mission1"
+- Criar um usuário "luxxy-covid-testing-system-pt-app1" no serviço AWS IAM, com acesso programático (cli) e com a política "AmazonS3FullAccess", criar uma chave de acesso ao mesmo, baixando, renomeando o CSV para "luxxy-covid-testing-system-pt-app1.csv" e colocando-o dentro do diretório "mission2"
+- Alterar o nome do bucket no arquivo tcb_aws_storage.tf (pasta mission1)para o seu bucket desejado no S3
 
-## Tencologias
+## Tecnologiass
 - IAC: Terraform
-- Armazenamento: AWS S3
-- Banco de Dados: Google Cloud SQL
-- Aplicação: hospedada e processada no Google Kubernetes Engine (GKE) usando o Google Container Registry (GCR)
-- Altere o nome do bucket no arquivo tcb_aws_storage.tf para o seu bucket desejado no S3
+- Storage: AWS S3
+- Database: Google Cloud SQL
+- Application: hosted and processed on Google Kubernetes Engine (GKE) using Google Container Registry (GCR)
+- Google Cloud Shell
+- Google Cloud Editor
 
 ## Etapa 1: Fornecendo a Infraestrutura
 
@@ -111,7 +150,7 @@ Execute os seguintes comandos no Google Cloud PowerShell:
 4) terraform apply
 5) Digite "yes"
 
-## Etapa 2: Preparando a Rede SQL
+## Etapa 2: Preparando o ambiente SQL
 - Selecione a sua instância Cloud SQL
 - Selecione "Conexões"
 - Acesse a guia "Networking" e em "Atribuição de IP da instância", ative o IP Privado
@@ -125,3 +164,38 @@ Execute os seguintes comandos no Google Cloud PowerShell:
   - Nome: Acesso Público (Apenas para Testes)
   - Rede: 0.0.0.0/0
   - Clique em Concluído
+ 
+## Etapa 3: Convertendo a aplicação para rodar em ambiente multicloud
+- Criar um usuário e senha de banco de dados no serviço Google Cloud SQL
+- Conectar-se ao Google Cloud Shell e executar os seguintes comandos:
+  - cd ~
+  - mkdir mission2_pt
+  - cd mission2_pt
+  - wget https://tcb-public-events.s3.amazonaws.com/icp/mission2.zip
+  - unzip mission2.zip
+- Conectar-se à instância SQL com o comando: mysql --host=<your_public_ip_cloudsql> --port=3306 -u app -p
+- Criar a tabela "records" com os comandos:
+  - use dbcovidtesting;
+  - source ~/mission2_pt/mission2/pt/db/create_table.sql
+  - show tables; (para validar a criação da tabela)
+  - exit;
+- Habilitar o Google Cloud Build com o comando: gcloud services enable cloudbuild.googleapis.com
+
+## Etapa 4: Realizar o build da imagem Docker previamente configurada e editar o arquivo YAML do Kubernets
+- Executar:
+  - cd ~/mission2_pt/mission2/pt/app
+  - gcloud builds submit --tag gcr.io/<PROJECT_ID>/luxxy-covid-testing-system-app-pt
+- Alterar o arquivo luxxy-covid-testing-system.yaml nos seguintes trechos:
+  -  image (inserir o seu project_id)
+  -  AWS_BUCKET (inserir o nome do seu bucket já criado)
+  -  S3_ACCESS_KEY (inserir de acordo com o arquivo luxxy-covid-testing-system-pt-app1.csv)
+  -  S3_SECRET_ACCESS_KEY (inserir de acordo com o arquivo luxxy-covid-testing-system-pt-app1.csv)
+  -  DB_HOST_NAME (inserir o ip privado da sua instância de banco de dados
+ 
+## Etapa 5: Realizar o deploy da aplicação no cluster Kubernets
+- Acessar o GKE pelo console, selecionar a opção "Conectar > Executar no Cloud Shell" e executar o comando, a fim de autenticar o Kubernets
+- Realizar o deploy através do seguinte comando:
+  - cd ~/mission2_pt/mission2/pt/kubernetes
+  - kubectl apply -f luxxy-covid-testing-system.yaml
+- Ainda no painel do GKE, acesso "Serviços e entradas" e o ip do endpoint gerado
+- A aplicação está no ar!
