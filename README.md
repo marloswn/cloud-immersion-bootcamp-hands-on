@@ -13,7 +13,7 @@ This project leverages a cutting-edge multicloud strategy, harnessing the power 
 - IAC: Terraform
 - Storage: AWS S3
 - Database: Google Cloud SQL
-- Application: hosted and processed on Google Kubernets Engine (GKE) using Google Container Registry (GCR)
+- Application: hosted and processed on Google Kubernetes Engine (GKE) using Google Container Registry (GCR)
 - Google Cloud Shell
 - Google Cloud Editor
 
@@ -37,7 +37,7 @@ Run the following commands on Google Cloud PowerShell:
 #### Setting the project on GCP
 1) ./gcp_set_project.sh
 
-#### Enabling Kubernets, Container Registry and Cloud SQL
+#### Enabling Kubernetes, Container Registry and Cloud SQL
 1) gcloud services enable containerregistry.googleapis.com
 2) gcloud services enable container.googleapis.com
 3) gcloud services enable sqladmin.googleapis.com
@@ -181,7 +181,7 @@ Execute os seguintes comandos no Google Cloud PowerShell:
   - exit;
 - Habilitar o Google Cloud Build com o comando: gcloud services enable cloudbuild.googleapis.com
 
-## Etapa 4: Realizar o build da imagem Docker previamente configurada e editar o arquivo YAML do Kubernets
+## Etapa 4: Realizar o build da imagem Docker previamente configurada e editar o arquivo YAML do Kubernetes
 - Executar:
   - cd ~/mission2_pt/mission2/pt/app
   - gcloud builds submit --tag gcr.io/<PROJECT_ID>/luxxy-covid-testing-system-app-pt
@@ -192,7 +192,7 @@ Execute os seguintes comandos no Google Cloud PowerShell:
   -  S3_SECRET_ACCESS_KEY (inserir de acordo com o arquivo luxxy-covid-testing-system-pt-app1.csv)
   -  DB_HOST_NAME (inserir o ip privado da sua instância de banco de dados
  
-## Etapa 5: Realizar o deploy da aplicação no cluster Kubernets
+## Etapa 5: Realizar o deploy da aplicação no cluster Kubernetes
 - Acessar o GKE pelo console, selecionar a opção "Conectar > Executar no Cloud Shell" e executar o comando, a fim de autenticar o Kubernets
 - Realizar o deploy através do seguinte comando:
   - cd ~/mission2_pt/mission2/pt/kubernetes
