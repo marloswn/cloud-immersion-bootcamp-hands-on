@@ -102,7 +102,7 @@ Run the following commands on Google Cloud PowerShell:
 # PT-BR
 
 # Imersão em Nuvem Prática
-Este projeto aproveita uma estratégia multicloud de ponta, aproveitando o poder tanto do GCP quanto da AWS, para fornecer uma solução de Infraestrutura como Código (IAC) de última geração por meio da integração perfeita do Terraform. Trata-se de um cenário do mundo real de um hotel de luxo que precisa migrar sua aplicação de testes de Covid dos hóspedes e sua infraestrutura para a nuvem. É a implementação do bootcamp Cloud Immersion, hospedado pela equipe [The Cloud Bootcamp](https://thecloudbootcamp.com/).
+Este projeto utiliza uma estratégia multicloud de ponta, aproveitando o poder tanto do GCP quanto da AWS, para fornecer uma solução de Infraestrutura como Código (IAC) de última geração por meio da integração perfeita do Terraform. Trata-se de um cenário do mundo real de um hotel de luxo que precisa migrar sua aplicação de testes de Covid dos hóspedes e sua infraestrutura para a nuvem. É a implementação do bootcamp Cloud Immersion, hospedado pela equipe [The Cloud Bootcamp](https://thecloudbootcamp.com/).
 
 ## Requisitos
 - Contas na AWS e GCP
