@@ -13,7 +13,7 @@ This project leverages a cutting-edge multicloud strategy, harnessing the power 
 - IAC: Terraform
 - Storage: AWS S3
 - Database: Google Cloud SQL
-- Application: hosted and processed on Google Kubernetes Engine (GKE) using Google Container Registry (GCR)
+- Application: hosted and processed on Google Kubernets Engine (GKE) using Google Container Registry (GCR)
 - Google Cloud Shell
 - Google Cloud Editor
 
@@ -37,7 +37,7 @@ Run the following commands on Google Cloud PowerShell:
 #### Setting the project on GCP
 1) ./gcp_set_project.sh
 
-#### Enabling Kubernetes, Container Registry and Cloud SQL
+#### Enabling Kubernets, Container Registry and Cloud SQL
 1) gcloud services enable containerregistry.googleapis.com
 2) gcloud services enable container.googleapis.com
 3) gcloud services enable sqladmin.googleapis.com
