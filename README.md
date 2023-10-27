@@ -98,6 +98,29 @@ Run the following commands on Google Cloud PowerShell:
   - kubectl apply -f luxxy-covid-testing-system.yaml
 - In the GKE panel, go to "Services and Ingress" and find the IP of the generated endpoint.
 - The application is up and running!
+
+## Step 6: Migration of Application Data and Files
+- In Google Cloud Shell, execute the following commands:
+  - cd ~
+  - mkdir mission3_pt
+  - cd mission3_pt
+  - wget https://tcb-public-events.s3.amazonaws.com/icp/mission3.zip
+  - unzip mission3.zip
+  - Connect to the database instance: mysql --host=<public_ip_address> --port=3306 -u app -p
+  - Import the exported data from the on-premises database:
+    - use dbcovidtesting;
+    - source ~/mission3_pt/mission3/pt/db/db_dump.sql
+-In AWS CloudShell, download the files using the following commands:
+  - mkdir mission3_pt
+  - cd mission3_pt
+  - wget https://tcb-public-events.s3.amazonaws.com/icp/mission3.zip
+  - unzip mission3.zip
+  - Synchronize the downloaded data with S3:
+    - cd mission3/pt/pdf_files
+    - aws s3 sync . s3://luxxy-covid-testing-system-pdf-pt-<your_bucket>
+- Test the application in the "View Records" tab to verify if the data and files are available.
+
+And there you go! Your online solution is up and running!
  
 # PT-BR
 
@@ -190,7 +213,7 @@ Execute os seguintes comandos no Google Cloud PowerShell:
   -  AWS_BUCKET (inserir o nome do seu bucket já criado)
   -  S3_ACCESS_KEY (inserir de acordo com o arquivo luxxy-covid-testing-system-pt-app1.csv)
   -  S3_SECRET_ACCESS_KEY (inserir de acordo com o arquivo luxxy-covid-testing-system-pt-app1.csv)
-  -  DB_HOST_NAME (inserir o ip privado da sua instância de banco de dados
+  -  DB_HOST_NAME (inserir o ip privado da sua instância de banco de dados)
  
 ## Etapa 5: Realizar o deploy da aplicação no cluster Kubernetes
 - Acessar o GKE pelo console, selecionar a opção "Conectar > Executar no Cloud Shell" e executar o comando, a fim de autenticar o Kubernets
@@ -199,3 +222,26 @@ Execute os seguintes comandos no Google Cloud PowerShell:
   - kubectl apply -f luxxy-covid-testing-system.yaml
 - Ainda no painel do GKE, acesso "Serviços e entradas" e o ip do endpoint gerado
 - A aplicação está no ar!
+
+## Etapa 6: Migração dos dados e arquivos da aplicação
+- No Google Cloud Shell, realizar os comandos:
+  - cd ~
+  - mkdir mission3_pt
+  - cd mission3_pt
+  - wget https://tcb-public-events.s3.amazonaws.com/icp/mission3.zip
+  - unzip mission3.zip
+  - Conectar-se à instância de banco de dados: mysql --host=<public_ip_address> --port=3306 -u app -p
+  - Importar os dados exportados do banco de dados on-premisse: 
+    - use dbcovidtesting;
+    - source ~/mission3_pt/mission3/pt/db/db_dump.sql
+- No AWS CloudShell, realizar o download dos arquivos através dos comandos:
+  - mkdir mission3_pt
+  - cd mission3_pt
+  - wget https://tcb-public-events.s3.amazonaws.com/icp/mission3.zip
+  - unzip mission3.zip
+  - Sincronizar os dados baixados com o S3:
+    - cd mission3/pt/pdf_files
+    - aws s3 sync . s3://luxxy-covid-testing-system-pdf-pt-<your_bucket>
+- Realizar o teste na aplicação na aba "Ver registros" verificando se os dados e arquivos estão disponíveis.
+
+E pronto! Solução online e rodando!
