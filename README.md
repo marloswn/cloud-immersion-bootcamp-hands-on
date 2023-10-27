@@ -110,7 +110,7 @@ Run the following commands on Google Cloud PowerShell:
   - Import the exported data from the on-premises database:
     - use dbcovidtesting;
     - source ~/mission3_pt/mission3/pt/db/db_dump.sql
--In AWS CloudShell, download the files using the following commands:
+- In AWS CloudShell, download the files using the following commands:
   - mkdir mission3_pt
   - cd mission3_pt
   - wget https://tcb-public-events.s3.amazonaws.com/icp/mission3.zip
